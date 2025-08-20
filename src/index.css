@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+
+@theme {
+  --color-bglight: #F9F9F9;
+  --color-whitepure: #FFFFFF;
+  --color-accentlight: #FDEACD;
+  --color-accentred: #F95A50;
+  --color-accentpink: #E6A5A1;
+  --color-accentorange: #F8B959;
+}
