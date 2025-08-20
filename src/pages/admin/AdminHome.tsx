@@ -95,7 +95,7 @@ const AdminHome = () => {
       </div>
 
       <div className='w-full'>
-          <p className='text-center mt-10'>Post List</p>
+       <p className='text-center text-xl font-semibold mt-10'>Post List</p>
           
       </div>
 

@@ -10,7 +10,7 @@ type LayoutProps = {
 
 const Layout = ({ children, onAdd, isFormOpen, AddFormComponent, onLogout }: LayoutProps) => {
   return (
-    <div className="bg-bglight min-h-screen w-screen p-6">
+    <div className="bg-gray-200 min-h-screen w-screen p-6">
       {/* Header */}
       <div className="flex justify-between mb-6">
         <div className="flex gap-4">
