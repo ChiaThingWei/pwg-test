@@ -20,17 +20,17 @@ export const Card = ({ post, onView, onEdit, onDelete }: PostCardProps) => {
       </div>
       <div className="flex flex-row">
         <button
-        onClick={()=>onEdit?.(post.id)}
+        onClick={()=>onEdit?.(post.id!)}
         className="py-1 px-3 bg-accentlight rounded-full  lg:px-5 cursor-pointer hover:text-white transition-colors duration-300"
         >Edit</button>
 
         <button
-        onClick={()=>onView?.(post.id)}
+        onClick={()=>onView?.(post.id!)}
         className="py-1 px-3 bg-accentorange ml-1  lg:px-5 rounded-full cursor-pointer hover:text-white transition-colors duration-300"
         >View</button>
 
         <button
-         onClick={() => onDelete?.(post.id)}
+         onClick={() => onDelete?.(post.id!)}
         className="py-1 px-3 bg-accentred rounded-full ml-1  cursor-pointer lg:px-5 hover:text-white transition-colors duration-300"
         >Delete</button>
 
