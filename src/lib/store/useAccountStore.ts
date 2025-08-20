@@ -1,6 +1,6 @@
 import { create } from "zustand"
-import { getAllAccountsApi } from "../api/Account"
-import type { Account } from "../api/Account"
+import { getAllAccountsApi } from "../api/account.ts"
+import type { Account } from "../api/account.ts"
 
 type AccountState = {
   accounts: Account[]
@@ -19,7 +19,7 @@ export const useAccountStore = create<AccountState>((set) => ({
     set({ loading: true, error: null })
     try {
       const data = await getAllAccountsApi()
-      console.log(data)
+     
       set({
         accounts: data,
         totalAccounts: data.length,
