@@ -1,4 +1,4 @@
-import api from "./account.ts"
+import api from "./account"
 
 export type PostPayload  = {
     id?:number,

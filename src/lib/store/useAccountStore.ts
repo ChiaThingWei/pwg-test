@@ -1,6 +1,6 @@
 import { create } from "zustand"
-import { getAllAccountsApi } from "../api/account.ts"
-import type { Account } from "../api/account.ts"
+import { getAllAccountsApi } from "../api/account"
+import type { Account } from "../api/account"
 
 type AccountState = {
   accounts: Account[]

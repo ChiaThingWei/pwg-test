@@ -1,14 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { loginApi } from "../api/Account";
-import type { LoginResponse } from "../api/Account";
-import type { LoginParams } from "../api/Account";
-import { registerUser } from "../api/Account";
-import type { RegisterUser } from "../api/Account";
+import type { LoginResponse, RegisterUser } from "../api/account";
+import type { LoginParams } from "../api/account";
+import { loginApi, registerUser } from "../api/account";
+
+
 
 interface UseLoginOptions {
     onSuccess?: (data: LoginResponse) => void;
-    onError?: (error: AxiosError<{ message: string }>) => void; // ✅ 指定类型
+    onError?: (error: AxiosError<{ message: string }>) => void;
   }
 
   export const useLoginMutation = ({ onSuccess, onError }: UseLoginOptions = {}) => {
@@ -45,7 +45,7 @@ export const useRegisterMutation = (
     mutationFn: registerUser,
     onSuccess: (data) => {
       if (options?.onSuccess) options.onSuccess(data)
-       console.log(data)   
+       
     },
     onError: (error) => {
       if (options?.onError) options.onError(error)
