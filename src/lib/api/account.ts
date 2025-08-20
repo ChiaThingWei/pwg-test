@@ -1,24 +1,24 @@
-import axios from "axios";
+import axios from "axios"
 
 const api = axios.create({
   baseURL: "https://api-for-testing-gujp.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
-});
+})
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token")
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`
   }
-  return config;
-});
+  return config
+})
 
 
 export interface LoginParams {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface LoginResponse {
@@ -30,7 +30,7 @@ export interface LoginResponse {
 }
 
 export const loginApi = (data: LoginParams) =>
-  api.post<LoginResponse>("/account/login", data).then(res => res.data);
+  api.post<LoginResponse>("/account/login", data).then(res => res.data)
 
 
 export type RegisterUser = {
@@ -60,4 +60,4 @@ export const getAllAccountsApi = async (): Promise<Account[]> => {
 
 
 
-export default api;
+export default api
