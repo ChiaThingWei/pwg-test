@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../lib/hooks/useAccountMutation";
-import type { LoginResponse } from "../lib/api/Account";
+import type { LoginResponse } from "../lib/api/account.ts";
 import type { AxiosError } from "axios";
 import { Check } from "lucide-react";
 import { CircleX } from "lucide-react";
@@ -32,12 +32,9 @@ const LoginForm = () => {
           localStorage.setItem("token", data.token);
           setShowPopup(true);
         setPopupType("success");
-        console.log( data);
-
-       
+    
         const payload = jwtDecode<TokenPayload>(data.token)
-        console.log(payload.role)
-          
+       
         setTimeout(() => {
             setShowPopup(false);
             
