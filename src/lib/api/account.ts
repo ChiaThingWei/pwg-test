@@ -7,6 +7,15 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+
 export interface LoginParams {
   email: string;
   password: string;
@@ -31,10 +40,23 @@ export type RegisterUser = {
   role: string
 }
 
+export type Account = {
+  userId: number
+  username: string
+  email: string
+  role: "admin" | "user"
+}
+
 export const registerUser = async (data: RegisterUser) => {
 const res = await api.post("/account/register", data)
 return res.data
 }
+
+export const getAllAccountsApi = async (): Promise<Account[]> => {
+  const response = await api.get("/accounts") 
+  return response.data.accounts
+}
+
 
 
 

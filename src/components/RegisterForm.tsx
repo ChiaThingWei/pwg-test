@@ -3,7 +3,14 @@ import { useRegisterMutation } from '../lib/hooks/useAccountMutation'
 import { useNavigate } from 'react-router-dom'
 import { Check } from 'lucide-react'
 import toast from 'react-hot-toast'
+import { jwtDecode } from "jwt-decode";
 
+interface TokenPayload {
+  username: string
+  email: string
+  userId: number
+  role: "admin" | "user"
+}
 
 const RegisterForm = () => {
 
@@ -22,9 +29,16 @@ const RegisterForm = () => {
         localStorage.setItem("token", data.token);
         setShowPopup(true);
           
+        const payload = jwtDecode<TokenPayload>(data.token)
+        console.log(payload.role)
+
         setTimeout(() => {
             setShowPopup(false);
-            navigate("/");
+            if (payload.role === "admin") {
+              navigate("/admin")
+            } else {
+              navigate("/")
+            }
           }, 1500);
       },
       onError: (error) => {

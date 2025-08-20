@@ -5,6 +5,14 @@ import type { LoginResponse } from "../lib/api/Account";
 import type { AxiosError } from "axios";
 import { Check } from "lucide-react";
 import { CircleX } from "lucide-react";
+import { jwtDecode } from "jwt-decode";
+
+interface TokenPayload {
+  username: string
+  email: string
+  userId: number
+  role: "admin" | "user"
+}
 
 interface ErrorResponse {
     message: string;
@@ -25,15 +33,27 @@ const LoginForm = () => {
           setShowPopup(true);
         setPopupType("success");
         console.log( data);
+
+       
+        const payload = jwtDecode<TokenPayload>(data.token)
+        console.log(payload.role)
           
         setTimeout(() => {
             setShowPopup(false);
-            navigate("/");
+            
+            if (payload.role === "admin") {
+              navigate("/admin")
+            } else {
+              navigate("/")
+            }
           }, 1500);
 
         },
         onError: (error: AxiosError<ErrorResponse>) => {
             console.log(error.response?.data?.message);
+            console.log('log in fail')
+            setShowPopup(true);
+            setPopupType("error");
         },
       });
 
@@ -74,14 +94,14 @@ const LoginForm = () => {
             <input type="password" 
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            className='border border-accentorange rounded-full py-1 mb-4' placeholder='' />
+            className='border px-2 border-accentorange rounded-full py-1 mb-4' placeholder='' />
 
-            <button type="submit" className='bg-accentorange text-black rounded-full py-1 hover:bg-blue-600'>Login</button>
+            <button type="submit" className='bg-accentorange text-black rounded-full py-1 hover:text-white transition-colors duration-300 cursor-pointer'>Login</button>
         </form>
 
         <button
         onClick={handleNavigate}
-        className='text-accentorange text-lg mt-4 cursor-pointer'
+        className='text-accentorange text-lg mt-4 cursor-pointer hover:text-black transition-colors duration-300'
         >Create an account</button>
 
 
