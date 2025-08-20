@@ -2,7 +2,6 @@ import { create } from "zustand"
 import { getAllPostApi, getMyPostApi } from "../api/post"
 import type { PostPayload } from "../api/post"
 
-// 定义 Zustand store
 type PostState = {
   posts: PostPayload[]
   loading: boolean
@@ -34,7 +33,7 @@ export const usePostStore = create<PostState>((set) => ({
         loading: false,
         totalPost: data.totalPosts,
     })
-      console.log(data)
+   
     } catch (err) {
         if (err instanceof Error) {
           set({ error: err.message, loading: false })
@@ -59,11 +58,9 @@ export const useMyPostStore = create<PostState>((set) => ({
       set({ loading: true, error: null })
       try {
         const data = await getMyPostApi({ page, limit})
-        console.log(data.totalPosts)
         set({ posts: data.data,
             totalPost:data.totalPosts,
             totalPages: data.totalPages, loading: false })
-        console.log(data)
       } catch (err) {
           if (err instanceof Error) {
             set({ error: err.message, loading: false })

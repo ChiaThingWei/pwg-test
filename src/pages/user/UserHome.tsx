@@ -26,7 +26,6 @@ const Home = () => {
 
   useEffect(() => {
    void fetchPosts(page,limit)
-   console.log(limit)
   }, [page,limit,fetchPosts])
 
   useEffect(() => {
@@ -109,7 +108,7 @@ const Home = () => {
           )}
            <CardDetail
           post={selectedPost}
-          onClose={() => setSelectedPost(null)} // 关闭弹窗
+          onClose={() => setSelectedPost(null)} 
         />
         </div>
 

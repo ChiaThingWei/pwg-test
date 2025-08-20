@@ -28,13 +28,11 @@ const AdminHome = () => {
 
   useEffect(() => {
     void fetchAccounts()
-    console.log('total'+totalAccounts)
-  }, [fetchAccounts,totalAccounts])
+  }, [fetchAccounts])
 
   useEffect(() => {
    void fetchPosts(page,limit)
    void fetchMine(page,limit)
-   console.log(limit)
   }, [page,limit,fetchPosts,fetchMine])
 
   useEffect(() => {
@@ -101,7 +99,7 @@ const AdminHome = () => {
           
       </div>
 
-      <div className='grid grid-cols-2 lg:grid-cols-3 gap-3 mt-4'>
+      <div className='grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-10 mt-4'>
           <div className='bg-accentlight text-center text-black p-6 rounded-lg'> 
             <p className='font-semibold'>Total Account</p>
             <p className='font-semibold text-3xl mt-4'>{totalAccounts}</p>
@@ -137,7 +135,7 @@ const AdminHome = () => {
           {selectedPost && (
         <CardDetail
           post={selectedPost}
-          onClose={() => setSelectedPost(null)} // 关闭弹窗
+          onClose={() => setSelectedPost(null)} 
         />
       )}
 
